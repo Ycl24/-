@@ -1,6 +1,6 @@
-* docker version
+1. docker version
 解析：查看Docker版本
-* docker images
+2. docker images
 解析：查看已下载的镜像
 3. docker ps
 解析：查看运行的容器
