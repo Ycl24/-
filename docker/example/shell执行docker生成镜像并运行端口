@@ -21,19 +21,19 @@ script_path='/data/webroot/cms_web_script'
 
 
 #删除文件夹
-# rm -rf ${project_path}
+rm -rf ${project_path}
 
-# cd ${webroot_path}
-# #不存在-拉去git项目
-# git clone https://github.com/Ycl24/cms_web.git
+cd ${webroot_path}
+#不存在-拉去git项目
+git clone https://github.com/Ycl24/cms_web.git
 
-# chmod -R 777 ${project_path}
+chmod -R 777 ${project_path}
 
 cd ${project_path}
 
-# git checkout ${branch_name}
+git checkout ${branch_name}
 
-# git pull origin ${branch_name}
+git pull origin ${branch_name}
 
 #查询容器
 images_con_info=`docker ps ${con_name}`
@@ -80,5 +80,3 @@ docker build -f ${dockerfile_path} -t ${images_name}:${tag_name}  ${project_path
 
 #清理所有悬挂（<none>）镜像
 docker rmi `docker images -f "dangling=true" -q`
-
-#在当前脚本目录下执行
