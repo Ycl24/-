@@ -1,4 +1,4 @@
->1. docker version
+> 1. docker version
 解析：查看Docker版本
 >2. docker images
 解析：查看已下载的镜像
