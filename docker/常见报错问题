@@ -1,0 +1,5 @@
+1、systemctl restart docker  
+注释：Docker容器启动报WARNING: IPv4 forwarding is disabled. Networking will not work 需要重启docker
+
+2、docker login -u <帐号> -p <密码>
+注释:报错 docker login 
