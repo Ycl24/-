@@ -80,3 +80,5 @@ docker build -f ${dockerfile_path} -t ${images_name}:${tag_name}  ${project_path
 
 #清理所有悬挂（<none>）镜像
 docker rmi `docker images -f "dangling=true" -q`
+
+#在当前脚本目录下执行
