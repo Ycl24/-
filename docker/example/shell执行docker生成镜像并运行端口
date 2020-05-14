@@ -19,6 +19,8 @@ webroot_path='/data/webroot'
 #script path 脚本 相对路径
 script_path='/data/webroot/cms_web_script'
 
+#prot  端口
+prot='80:80'
 
 #删除文件夹
 rm -rf ${project_path}
@@ -35,36 +37,14 @@ git checkout ${branch_name}
 
 git pull origin ${branch_name}
 
-#查询容器
-images_con_info=`docker ps ${con_name}`
-
 #判断容器否存在
-strop_con_name= `echo ${images_con_info} | grep "${con_name}" `
+images_info=`docker ps -a | grep "${con_name}" `
 
-#查询容器 -as
-images_con_as_info=`docker ps -as ${con_name}`
-
-#判断容器 as 否存在
-strop_con_as_name= `echo ${images_con_as_info} | grep "${con_name}" `
-if [[ "$strop_con_name" != "" ]] || [[ "$strop_con_as_name" != "" ]]
+if [[ "$images_info" != "" ]]
  then
     #容器存在
     #查询所有的容器，过滤出Exited状态的容器，列出容器ID，删除这些容器
     docker rm  -f `docker ps -a|grep ${con_name}|awk '{print $1}'`
- fi
-
-
-
-#查询容器
-images_name_info=`docker images ${images_name}`
-
-#判断镜像是否存在
-strop_images_name= `echo ${images_name_info} | grep "${images_name}" `
-if [[ "$strop_images_name" != "" ]]
- then
-    #镜像存在
-    #删除docker crm_web 关键字的镜像
-    docker rmi -f `docker images | grep ${images_name} | awk '{print $3}'` 
  fi
 
 
@@ -80,3 +60,7 @@ docker build -f ${dockerfile_path} -t ${images_name}:${tag_name}  ${project_path
 
 #清理所有悬挂（<none>）镜像
 docker rmi `docker images -f "dangling=true" -q`
+
+docker run   --name ${con_name}   -d -p ${prot} -d ${images_name}:${tag_name} 
+
+#在脚本目录下执行./
