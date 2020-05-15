@@ -13,7 +13,7 @@ dockerfile_path='Dockerfile'
 #project path 项目路径 相对路径
 project_path='/data/webroot/cms_web'
 
-#webroot path 项目路径 相对路径
+#webroot path web项目路径 相对路径
 webroot_path='/data/webroot'
 
 #script path 脚本 相对路径
@@ -22,12 +22,15 @@ script_path='/data/webroot/cms_web_script'
 #prot  端口
 prot='80:80'
 
+#git_url 
+git_url='https://github.com/Ycl24/cms_web.git'
+
 #删除文件夹
 rm -rf ${project_path}
 
 cd ${webroot_path}
 #不存在-拉去git项目
-git clone https://github.com/Ycl24/cms_web.git
+git clone 
 
 chmod -R 777 ${project_path}
 
